@@ -2,7 +2,7 @@ An example of our routine `bcl2fastq` script is below
 * For NovaSeq runs it's typically necessary to apply the mask to remove the 1st base from the second index
   * Using the command as shown, I2 will need to have the first base removed in the SampleSheet.csv
 * All indexes have at least 2 base differences in  I1 and I2 so allowing 1 mismatch is fine
-* This should take <20 minutes for a full 800M SP100 kit, typically setup as 61|8|8|61 (but can vary depending on requirements)
+* This should take <20 minutes for a full 800M SP100 kit, typically setup as 61|8|8|61 (but can vary depending on requirements of library)
 
 
 ```
