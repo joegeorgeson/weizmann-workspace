@@ -1,3 +1,6 @@
+These are aliases I find useful in general and specifically for working on wexac
+
+```
 alias lrt='ls -lrth'
 alias la='ls -lah'
 alias lfa='ls -laFh'
@@ -28,3 +31,5 @@ alias jacusa2='java -jar /home/labs/schwartzlab/joeg/github/JACUSA2/JACUSA_v2.0.
 alias fixbed='/apps/easybd/easybuild/software/R/4.2.0-foss-2021b/bin/Rscript /home/labs/schwartzlab/joeg/scripts/gff_2_bedFix.R -i '
 alias mlsamtools='ml SAMtools/1.15.1-GCC-11.2.0'
 alias mmseqs='/home/labs/schwartzlab/joeg/scripts/mmseqs/bin/mmseqs'
+alias s3ls='aws s3 ls $1 --recursive --human-readable --summarize'
+```
