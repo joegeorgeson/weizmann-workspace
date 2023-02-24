@@ -1,0 +1,10 @@
+An example of our routine `bcl2fastq` script is below
+* For NovaSeq runs with low-complexity indexes, it's necessary to apply the mask to remove the 1st base from the second index
+* All indexes have at least 2 base differences in  I1 and I2 so allowing 1 mismatch is fine
+* This should take <20 minutes for a full 800M SP100 kit
+
+
+```
+module load bcl2fastq/2.20.0.422
+bsub -q new-short -P bcl2fastq -n 24,24 -R 'span[hosts=1]' -R rusage[mem=1000] bcl2fastq --runfolder-dir /home/labs/schwartzlab/joeg/data/lib708/230101_A00929_0841_AHNY2CDRX2/ -p 24 --output-dir /home/labs/schwartzlab/joeg/data/lib708/230101_A00929_0841_AHNY2CDRX2/parental_fastq_mask/ --sample-sheet /home/labs/schwartzlab/joeg/data/lib708/SampleSheet_lib708.csv --use-bases-mask Y*,I*,n1i7,Y* --no-lane-splitting --barcode-mismatches 1,1
+```
