@@ -1,6 +1,6 @@
 ### Here are some tricks for using python code from R
 
-How to setup environment - note that users can specify the python (and therefore environemnt)
+How to setup environment - note that users can specify the python (and therefore environment)
 ```
 library(reticulate)
 
