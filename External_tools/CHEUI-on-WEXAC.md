@@ -10,6 +10,8 @@ General notes
 * Submission to general queue results in pre-emption so submit to schwartz queue ...
 * Index fast5 files first as this is rate limiting step
 
+This is only for m6A because the m5C model breaks at the time of creation, but can easily be adapted for m5C
+
 Items can be downloaded and untar-ed as below;
 ```
 ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR470/ERR4706156/HEK293T-WT-rep1.tar.gz
