@@ -151,15 +151,31 @@ print(paste0("nohup ", working.dir, "/all_cmds_bsub.sh &"))
 
 lastly the data can be consolidated as below;
 ```
+library(data.table)
+library(cutpointr)
+
 HEK293.WT.rep1.m6A <- get.m6A.site("/home/labs/schwartzlab/joeg/reviews/CHEUI/HEK293T-WT-rep1/m6A_preprocess/")
 HEK293.WT.rep2.m6A <- get.m6A.site("/home/labs/schwartzlab/joeg/reviews/CHEUI/HEK293T-WT-rep2/m6A_preprocess/")
 HEK293.WT.rep3.m6A <- get.m6A.site("/home/labs/schwartzlab/joeg/reviews/CHEUI/HEK293T-WT-rep3/m6A_preprocess/")
 
+table(HEK293.WT.rep3.m6A$is.DRACH)
+HEK293.WT.rep3.m6A.cp <- cutpointr(HEK293.WT.rep3.m6A, x=probability, class=is.DRACH,direction=">=", pos_class="is.DRACH",
+                     method = maximize_metric, metric = accuracy)
+plot(HEK293.WT.rep3.m6A.cp)
+table(HEK293.WT.rep3.m6A$is.DRACH[HEK293.WT.rep3.m6A$probability > HEK293.WT.rep3.m6A.cp$optimal_cutpoint])
 
 get.m6A.site <- function(in.dir){
   site.files <- list.files(in.dir, pattern="site", full.names = T)
   site.dat <- lapply(site.files, function(x) fread(x))
   site.dat.all <- rbindlist(site.dat)
+  
+  is.DRACH <- vmatchPattern(pattern = "DRACH", subject = DNAStringSet(substr(site.dat.all$site,3,7)), max.mismatch = 0,fixed=F)
+  is.DRACH.log <- unlist(lapply(is.DRACH@ends, function(x) is.null(x)==F))
+  site.dat.all$is.DRACH <- ""
+  site.dat.all$is.DRACH[is.DRACH.log] <- "is.DRACH"
+  site.dat.all$is.DRACH[!is.DRACH.log] <- "not.DRACH"
+  
   return(site.dat.all)
 }
+
 ```
