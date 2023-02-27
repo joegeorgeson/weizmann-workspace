@@ -77,21 +77,29 @@ close(fileConn)
 ```
 aa <- readRDS("/home/labs/schwartzlab/joeg/alphafold/accession_ids.rds")
 
+in.dir <- "/home/labs/schwartzlab/joeg/alphafold/Pfu_ac4C/"
 
-diamond.hits <-fread("/home/labs/schwartzlab/joeg/alphafold/Pfu_m5C/diamond_blastp_out.txt")
+diamond.hits <-fread(paste0(in.dir,"/diamond_blastp_out.txt"))
 colnames(diamond.hits) <- c("qseqid","sseqid","pident","qlen","slen","mismatch","gapopen","qstart","qend","sstart","send","evalue","bitscore","qseq","sseq","full_sseq")
 
 diamond.hits.uniprot.id <- unlist(lapply(diamond.hits$sseqid, function(x) strsplit(x, "_")[[1]][3]))
+diamond.hits.uniprot.id <- unlist(lapply(diamond.hits.uniprot.id, function(x) strsplit(x, "[.]")[[1]][1]))
 
-write.csv(diamond.hits.uniprot.id, row.names=F, "/home/labs/schwartzlab/joeg/alphafold/Pfu_m5C/diamond_blastp_out_names.txt")
+write.csv(diamond.hits.uniprot.id, row.names=F, paste0(in.dir,"/diamond_blastp_out_names.txt"))
 
-uniprot.hits <- fread("/home/labs/schwartzlab/joeg/alphafold/Pfu_m5C/uniprot-compressed_true_download_true_fields_accession_2Creviewed_2C-2023.02.27-20.49.45.88.tsv")
+uniprot.hits <- fread(paste0(in.dir,"/uniprot-conversion.tsv"))
 
 af.hits <- aa[aa$Uniprot.ID %in% uniprot.hits$Entry]
 
+not.af.hits <- uniprot.hits[!(uniprot.hits$Entry %in% af.hits$Uniprot.ID)]
+not.af.hits.seqs <- diamond.hits[diamond.hits.uniprot.id %in% not.af.hits$From]
+
+seqinr::write.fasta(as.list(not.af.hits.seqs$full_sseq), names=not.af.hits.seqs$sseqid,
+            paste0(in.dir, "/local_fold.fna"))
+
 wget.cmd <- paste0("wget https://alphafold.ebi.ac.uk/files/",af.hits$AF.ID,"-model_v", af.hits$version, ".pdb")
 
-fileConn<-file("/home/labs/schwartzlab/joeg/alphafold/Pfu_m5C/wget_pdb_cmds.sh")
+fileConn<-file(paste0(in.dir,"/wget_pdb_cmds.sh"))
 writeLines(c("#!/bin/sh",
              wget.cmd,
            sep="\n"),
