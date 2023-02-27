@@ -87,4 +87,79 @@ singularity run /home/labs/schwartzlab/joeg/sif/surfmap_v1.5.sif -pdb /home/labs
 
 
 
+### IN PROGRESS
+```
+pfu.m5C <- "1072_relaxed_rank_1"
+pdb.in.dir <- "/home/labs/schwartzlab/joeg/alphafold/Pfu_ac4C/predictions_1/"
+mat.in.dir <- "/home/labs/schwartzlab/joeg/alphafold/Pfu_ac4C/TMalign/"
+
+
+pdb.files <- list.files(pdb.in.dir, pattern="pdb$", full.names = F, recursive = F)
+pdb.files <- pdb.files[grep("relaxed_rank_1",pdb.files)]
+pfu.m5C.file <- pdb.files[grep(pfu.m5C, pdb.files)]
+
+tmalign.py <- readLines("/home/labs/schwartzlab/joeg/scripts/tmalign_source.py")
+
+load.mobile <- paste0('cmd.load("',pdb.in.dir,pdb.files,'")')
+load.target <- paste0('cmd.load("',pdb.in.dir,pfu.m5C.file,'")')
+align.cmd <- paste0('tmalign("',
+                    substr(pdb.files,1,nchar(pdb.files)-4),'", "WP_011011787.1_relaxed_rank_1_model_3")')
+save.cmd <- paste0('cmd.save("',
+                   mat.in.dir, substr(pdb.files,1,nchar(pdb.files)-4),'_align.pdb",',
+                   '"',substr(pdb.files,1,nchar(pdb.files)-4),'",',0,')')
+
+### this writes the pymol (python) scripts
+for(i in 1:length(load.mobile)){
+  fileConn<-file(paste0("//home/labs/schwartzlab/joeg/alphafold/Pfu_ac4C/cmds/align_cmd_",i,".py")) #update the path
+  writeLines(c(tmalign.py,
+               load.target,
+               load.mobile[i],
+               align.cmd[i],
+               save.cmd[i]),
+             sep="\n",
+             con=fileConn)
+  close(fileConn)
+}
+
+
+
+tm.py.bsub <- paste0("bsub -q new-short -P pymol_tmalign -n 1,1 -R 'span[hosts=1]' -R rusage[mem=1000] ",
+                     "pymol -c /home/labs/schwartzlab/joeg/tmp/sharon/af/all_input_PDB/pymol/cmds/align_cmd_",1:1386,".py")
+
+### this is the bsub command to execute the pymol scripts
+fileConn<-file("/home/labs/schwartzlab/joeg/tmp/sharon/af/all_input_PDB/pymol/cmds/bsub_align_cmd.sh")
+writeLines(c("#!/bin/sh",
+             "ml pymol/1.8.6", # this
+             tm.py.bsub),
+           sep="\n",
+           con=fileConn)
+close(fileConn)
+
+
+pdb.files.aligned <- list.files("/home/labs/schwartzlab/joeg/tmp/sharon/af/all_input_PDB/pymol/", pattern="pdb")
+bsub.singularity.surfmap.all.cmd <- paste0("bsub -q new-short -P surfmap_singularity -n 1,1 -R 'span[hosts=1]' -R rusage[mem=1000] ",
+                                           "singularity run /home/labs/schwartzlab/joeg/sif/surfmap_v1.5.sif -pdb /home/labs/schwartzlab/joeg/tmp/sharon/af/all_input_PDB/pymol/",
+                                           pdb.files.aligned,
+                                           " -tomap all")
+
+fileConn<-file("/home/labs/schwartzlab/joeg/tmp/sharon/af/all_input_PDB/pymol/cmds/bsub_surfmap_singularity.sh")
+writeLines(c("#!/bin/sh",
+             bsub.singularity.surfmap.all.cmd),
+           sep="\n",
+           con=fileConn)
+close(fileConn)
+
+singularity.surfmap.all.cmd <- paste0("singularity run /home/labs/schwartzlab/joeg/sif/surfmap_v1.5.sif -pdb /home/labs/schwartzlab/joeg/tmp/sharon/af/all_input_PDB/pymol/",
+                                      pdb.files.aligned,
+                                      " -tomap electrostatics")
+
+fileConn<-file("/home/labs/schwartzlab/joeg/tmp/sharon/af/all_input_PDB/pymol/cmds/surfmap_singularity_elect.sh")
+writeLines(c("#!/bin/sh",
+             singularity.surfmap.all.cmd),
+           sep="\n",
+           con=fileConn)
+close(fileConn)
+```
+
+
 
