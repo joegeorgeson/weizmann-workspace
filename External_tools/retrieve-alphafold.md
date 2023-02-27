@@ -1,9 +1,8 @@
-Downloaded the references
+Downloaded the references from `http://ftp.ebi.ac.uk/pub/databases/alphafold/`
 
 ```
 wget http://ftp.ebi.ac.uk/pub/databases/alphafold/accession_ids.csv
 wget http://ftp.ebi.ac.uk/pub/databases/alphafold/sequences.fasta
-wget http://ftp.ebi.ac.uk/pub/databases/alphafold/latest/v4_updated_accessions.txt
 ```
 
 
