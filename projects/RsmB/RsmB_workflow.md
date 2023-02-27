@@ -75,3 +75,16 @@ close(fileConn)
 
 Step 4: Run alphafold by calling `sh predict_bsub.sh` in the previous step 
 
+
+Step 5: tmAlign relative to Pfu-RsmB
+
+Step 6: run surfmap (locally, singularity via bsub fails for unknown reason)
+```
+conda activate surfmap
+cd /home/labs/schwartzlab/joeg/github/SURFMAP #need relative paths...
+singularity run /home/labs/schwartzlab/joeg/sif/surfmap_v1.5.sif -pdb /home/labs/schwartzlab/joeg/alphafold/Pfu_ac4C/predictions_1/1072_relaxed_rank_1_model_2.pdb -proj flamsteed -d /home/labs/schwartzlab/joeg/alphafold/Pfu_ac4C/surfmap/ -tomap electrostatics
+```
+
+
+
+
