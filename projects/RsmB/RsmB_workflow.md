@@ -73,6 +73,34 @@ close(fileConn)
 
 ```
 
+## Just download from alphafold!
+```
+aa <- readRDS("/home/labs/schwartzlab/joeg/alphafold/accession_ids.rds")
+
+
+diamond.hits <-fread("/home/labs/schwartzlab/joeg/alphafold/Pfu_m5C/diamond_blastp_out.txt")
+colnames(diamond.hits) <- c("qseqid","sseqid","pident","qlen","slen","mismatch","gapopen","qstart","qend","sstart","send","evalue","bitscore","qseq","sseq","full_sseq")
+
+diamond.hits.uniprot.id <- unlist(lapply(diamond.hits$sseqid, function(x) strsplit(x, "_")[[1]][3]))
+
+write.csv(diamond.hits.uniprot.id, row.names=F, "/home/labs/schwartzlab/joeg/alphafold/Pfu_m5C/diamond_blastp_out_names.txt")
+
+uniprot.hits <- fread("/home/labs/schwartzlab/joeg/alphafold/Pfu_m5C/uniprot-compressed_true_download_true_fields_accession_2Creviewed_2C-2023.02.27-20.49.45.88.tsv")
+
+af.hits <- aa[aa$Uniprot.ID %in% uniprot.hits$Entry]
+
+wget.cmd <- paste0("wget https://alphafold.ebi.ac.uk/files/",af.hits$AF.ID,"-model_v", af.hits$version, ".pdb")
+
+fileConn<-file("/home/labs/schwartzlab/joeg/alphafold/Pfu_m5C/wget_pdb_cmds.sh")
+writeLines(c("#!/bin/sh",
+             wget.cmd,
+           sep="\n"),
+           con=fileConn)
+close(fileConn)
+
+```
+
+
 Step 4: Run alphafold by calling `sh predict_bsub.sh` in the previous step 
 
 
