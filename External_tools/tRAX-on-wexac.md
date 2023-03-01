@@ -1,4 +1,11 @@
-git clone tRAX
+
+```
+git clone https://github.com/UCSC-LoweLab/tRAX.git
+```
+
+Create environment
+```
+
 
 build for hg38
 ```
