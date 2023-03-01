@@ -27,4 +27,8 @@ sh quickdb.bash hg38 .
 python maketrnadb.py --databasename=hg38 --genomefile=genome.fa --trnascanfile=hg38-tRNAs-detailed.out --namemap=hg38-tRNAs_name_map.txt
 ```
 
-more to come
+To run singularity;
+```
+ml Singularity
+singularity run /home/labs/schwartzlab/Collaboration/programs/tRAX/trax_latest.sif trimadapters.py --runname STORM_tRNA --runfile /home/labs/schwartzlab/joeg/Collaborations/Jordan/human_tRNA_28Feb23/tRAX/runfile.txt
+```
