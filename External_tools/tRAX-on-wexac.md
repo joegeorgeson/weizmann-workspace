@@ -31,4 +31,5 @@ To run singularity;
 ```
 ml Singularity
 singularity run /home/labs/schwartzlab/Collaboration/programs/tRAX/trax_latest.sif trimadapters.py --runname STORM_tRNA --runfile /home/labs/schwartzlab/joeg/Collaborations/Jordan/human_tRNA_28Feb23/tRAX/runfile.txt
+singularity run /home/labs/schwartzlab/Collaboration/programs/tRAX/trax_latest.sif processsamples.py --experimentname=STORM --databasename=/home/labs/schwartzlab/Collaboration/programs/tRAX/hg38 --ensemblgtf=/home/labs/schwartzlab/Collaboration/programs/tRAX/genes.gtf --samplefile=/home/labs/schwartzlab/joeg/Collaborations/Jordan/human_tRNA_28Feb23/tRAX/samplefile.txt --exppairs=/home/labs/schwartzlab/joeg/Collaborations/Jordan/human_tRNA_28Feb23/tRAX/samplespairs.txt --nofrag
 ```
