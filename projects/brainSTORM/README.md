@@ -1,12 +1,25 @@
 # setup on wexac
 The easiest way to install and not destroy your environment is to build inside a conda
 ```
-conda create --name brainstorm
+conda create --name brainstorm -c conda-forge r-base
 conda activate brainstorm
-conda install -c conda-forge r-base=4.1 # this installed 4.1.3 for me - anything >=4.2 seems to have dependency issues at time of writing
+conda install -c bioconda bioconductor-genomicranges
+conda install -c bioconda bioconductor-biostrings
+conda install -c bioconda bioconductor-iranges
+#conda install -c bioconda bioconductor-shortread #already installed
+#conda install -c bioconda bioconductor-rsamtools #already installed
+#conda install -c bioconda bioconductor-s4vectors #already installed
+#conda install -c bioconda bioconductor-genomicalignments #already installed
+
+conda install -c bioconda bioconductor-plyranges #clashed with previous installs
+
 conda install -c conda-forge r-devtools
-R #open R from terminal and install with the below
+conda install -c conda-forge r-plyr
+conda install -c conda-forge r-optparse
+
+R
 devtools::install("/home/labs/schwartzlab/Collaboration/programs/brainSTORM")
+# don't upgrade any package
 ```
 
 
