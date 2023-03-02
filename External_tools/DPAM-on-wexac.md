@@ -30,7 +30,7 @@ HH-suite, Foldseek and dali.pl are found
 ```
 
 ## Database setup
-They provide a script `download_all_data.sh` to download everything, but I just did it in parallel as below
+They provide a script `download_all_data.sh` to download everything, but I just did it in parallel as below and untar with `tar -xzvf *tgz`
 ```
 cd /home/labs/schwartzlab/Collaboration/databases/DPAM
 nohup wget --no-check-certificate https://conglab.swmed.edu/DPAM/ECOD70.tgz &
