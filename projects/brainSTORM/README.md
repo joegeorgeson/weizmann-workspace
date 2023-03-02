@@ -3,7 +3,7 @@ The easiest way to install and not destroy your environment is to build inside a
 ```
 conda create --name brainstorm
 conda activate brainstorm
-conda install -c conda-forge r-base=4.1 # #>=4.2 seems to cause issues
+conda install -c conda-forge r-base=4.1 # this installed 4.1.3 for me - anything >=4.2 seems to have dependency issues at time of writing
 conda install -c conda-forge r-devtools
 R #open R from terminal and install with the below
 devtools::install("/home/labs/schwartzlab/Collaboration/programs/brainSTORM")
