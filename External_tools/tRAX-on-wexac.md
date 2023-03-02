@@ -31,7 +31,7 @@ ucsclowelab/trax                latest                            5bd8d0e2a89c  
 [joeg@docker1 ~]$ docker tag 5bd8d0e2a89c ops:5000/trax
 [joeg@docker1 ~]$ docker push ops:5000/trax
 [joeg@docker1 ~]$ singularity pull docker://ucsclowelab/trax
-[joeg@docker1 ~]$ scp trax_latest.sif joeg@epitrans:/home/labs/schwartzlab/joeg/github/tRAX/
+[joeg@docker1 ~]$ scp trax_latest.sif joeg@epitrans:/home/labs/schwartzlab/Collaboration/programs/tRAX/
 ```
 
 
