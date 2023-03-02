@@ -24,6 +24,14 @@ Also, I needed to create a symlink for `dali.pl` in the conda
 ln -s /home/labs/schwartzlab/Collaboration/programs/DPAM/DaliLite.v5/bin/dali.pl ~/.conda/envs/DPAM/bin/
 ```
 
+Check installation
+```
+$ conda activate DPAM
+$ export PATH=/home/labs/schwartzlab/Collaboration/programs/DPAM/mkdssp:/home/labs/schwartzlab/Collaboration/programs/DPAM/DaliLite.v5/bin/dali.pl:/home/labs/schwartzlab/Collaboration/programs/DPAM/hh-suite/build/bin:/home/labs/schwartzlab/Collaboration/programs/DPAM/hh-suite/build/scripts:$PATH
+$ cd /home/labs/schwartzlab/Collaboration/programs/DPAM
+$ python check_dependencies.py
+HH-suite, Foldseek and dali.pl are found
+```
 
 ## Database setup
 They provide a script `download_all_data.sh` to download everything, but I just did it in parallel as below
