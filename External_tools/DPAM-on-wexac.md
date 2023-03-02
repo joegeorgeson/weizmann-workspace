@@ -19,6 +19,12 @@ And lastly, the conda doesn't correctly source eveything, so this is the workaro
 export PATH=/home/labs/schwartzlab/Collaboration/programs/DPAM/mkdssp:/home/labs/schwartzlab/Collaboration/programs/DPAM/DaliLite.v5/bin/dali.pl:/home/labs/schwartzlab/Collaboration/programs/DPAM/hh-suite/build/bin:/home/labs/schwartzlab/Collaboration/programs/DPAM/hh-suite/build/scripts:/home/labs/schwartzlab/joeg/.conda/envs/DPAM/bin:$PATH
 ```
 
+Also, I needed to create a symlink for `dali.pl` in the conda
+```
+ln -s /home/labs/schwartzlab/Collaboration/programs/DPAM/DaliLite.v5/bin/dali.pl /home/labs/schwartzlab/joeg/.conda/envs/DPAM/bin/
+```
+
+
 ## Database setup
 They provide a script `download_all_data.sh` to download everything, but I just did it in parallel as below
 ```
