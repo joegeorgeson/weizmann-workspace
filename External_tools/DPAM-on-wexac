@@ -1,0 +1,8 @@
+
+
+
+
+The conda doesn't correctly source eveything, so this is the workaround for now.
+```
+export PATH=/home/labs/schwartzlab/Collaboration/programs/DPAM/mkdssp:/home/labs/schwartzlab/Collaboration/programs/DPAM/DaliLite.v5/bin/dali.pl:/home/labs/schwartzlab/Collaboration/programs/DPAM/hh-suite/build/bin:/home/labs/schwartzlab/Collaboration/programs/DPAM/hh-suite/build/scripts:/home/labs/schwartzlab/joeg/.conda/envs/DPAM/bin:$PATH
+```
