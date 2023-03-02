@@ -2,7 +2,7 @@
 
 
 ## Environment setup
-It will be easiest to setup your own conda
+It will be easiest to setup your own conda. The last step creates a symlink I found necessary.
 ```
 conda create --name DPAM python=3.8
 conda activate DPAM
@@ -13,15 +13,11 @@ conda install -c bioconda foldseek
 conda install -c conda-forge mmcif_pdbx
 conda install -c bioconda blast
 pip install dssp-wsl
+ln -s /home/labs/schwartzlab/Collaboration/programs/DPAM/DaliLite.v5/bin/dali.pl ~/.conda/envs/DPAM/bin/
 ```
 And lastly, the conda doesn't correctly source eveything, so this is the workaround for now.
 ```
 export PATH=/home/labs/schwartzlab/Collaboration/programs/DPAM/mkdssp:/home/labs/schwartzlab/Collaboration/programs/DPAM/DaliLite.v5/bin/dali.pl:/home/labs/schwartzlab/Collaboration/programs/DPAM/hh-suite/build/bin:/home/labs/schwartzlab/Collaboration/programs/DPAM/hh-suite/build/scripts:$PATH
-```
-
-Also, I needed to create a symlink for `dali.pl` in the conda
-```
-ln -s /home/labs/schwartzlab/Collaboration/programs/DPAM/DaliLite.v5/bin/dali.pl ~/.conda/envs/DPAM/bin/
 ```
 
 Check installation
