@@ -29,7 +29,17 @@ $ python check_dependencies.py
 HH-suite, Foldseek and dali.pl are found
 ```
 
-## Database setup
+## Usage
+```
+python DPAM.py <input_cif/pdb> <input_pae> <accession> <output_dir> <threads> <datadir>
+
+[joeg@epitrans ~]$ conda activate DPAM
+[joeg@epitrans ~]$ export PATH=/home/labs/schwartzlab/Collaboration/programs/DPAM/mkdssp:/home/labs/schwartzlab/Collaboration/programs/DPAM/DaliLite.v5/bin/dali.pl:/home/labs/schwartzlab/Collaboration/programs/DPAM/hh-suite/build/bin:/home/labs/schwartzlab/Collaboration/programs/DPAM/hh-suite/build/scripts:$PATH
+(DPAM) [joeg@epitrans ~]$ python /home/labs/schwartzlab/Collaboration/programs/DPAM/DPAM.py AF-A0A009GC07-F1-model_v4.pdb /home/labs/schwartzlab/joeg/tmp/AF-Q5JHC6-F1-predicted_aligned_error_v4.png A0A1Q5JHC6 ~/tmp 12 /home/labs/schwartzlab/Collaboration/database/DPAM/
+```
+
+
+## Database setup (only done once)
 They provide a script `download_all_data.sh` to download everything, but I just did it in parallel as below and untar with `tar -xzvf *tgz`
 ```
 cd /home/labs/schwartzlab/Collaboration/databases/DPAM
