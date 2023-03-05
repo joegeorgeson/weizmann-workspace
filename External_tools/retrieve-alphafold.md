@@ -10,10 +10,8 @@ wget https://alphafold.ebi.ac.uk/files/{alphafold_ID}-model_{database_version}.p
 wget https://alphafold.ebi.ac.uk/files/{alphafold_ID}-model_{database_version}.cif
 # bcif
 wget https://alphafold.ebi.ac.uk/files/{alphafold_ID}-model_{database_version}.bcif
-# bcif
-wget https://alphafold.ebi.ac.uk/files/{alphafold_ID}-model_{database_version}.bcif
 # pae json
-wget https://alphafold.ebi.ac.uk/files/{alphafold_ID}-predicted_aligned_error_{database_version}.bcif
+wget https://alphafold.ebi.ac.uk/files/{alphafold_ID}-predicted_aligned_error_{database_version}.json
 # pae png
 wget https://alphafold.ebi.ac.uk/files/{alphafold_ID}-predicted_aligned_error_{database_version}.png
 ```
