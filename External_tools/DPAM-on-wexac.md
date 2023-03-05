@@ -35,13 +35,13 @@ Here is the general command
 python DPAM.py <input_cif/pdb> <input_pae> <accession> <output_dir> <threads> <datadir>
 ```
 
-And something that worked for me
+And something that worked for me (make sure to use json and not png)
 ```
 conda activate DPAM
 export PATH=/home/labs/schwartzlab/Collaboration/programs/DPAM/mkdssp:/home/labs/schwartzlab/Collaboration/programs/DPAM/DaliLite.v5/bin/dali.pl:/home/labs/schwartzlab/Collaboration/programs/DPAM/hh-suite/build/bin:/home/labs/schwartzlab/Collaboration/programs/DPAM/hh-suite/build/scripts:$PATH
 wget https://alphafold.ebi.ac.uk/files/AF-Q9ZFH0-F1-model_v4.pdb
-wget https://alphafold.ebi.ac.uk/files/AF-Q9ZFH0-F1-predicted_aligned_error_v4.png
-python /home/labs/schwartzlab/Collaboration/programs/DPAM/DPAM.py AF-Q9ZFH0-F1-model_v4.pdb AF-Q9ZFH0-F1-predicted_aligned_error_v4.png Q9ZFH0 ./ 12 /home/labs/schwartzlab/Collaboration/databases/DPAM/
+wget https://alphafold.ebi.ac.uk/files/AF-Q9ZFH0-F1-predicted_aligned_error_v4.json
+python /home/labs/schwartzlab/Collaboration/programs/DPAM/DPAM.py AF-Q9ZFH0-F1-model_v4.pdb AF-Q9ZFH0-F1-predicted_aligned_error_v4.json Q9ZFH0 ./ 12 /home/labs/schwartzlab/Collaboration/databases/DPAM/
 ```
 
 
