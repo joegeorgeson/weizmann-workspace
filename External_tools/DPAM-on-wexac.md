@@ -30,14 +30,18 @@ HH-suite, Foldseek and dali.pl are found
 ```
 
 ## Usage
+Here is the general command
 ```
 python DPAM.py <input_cif/pdb> <input_pae> <accession> <output_dir> <threads> <datadir>
+```
 
-[joeg@epitrans ~]$ conda activate DPAM
-(DPAM) [joeg@epitrans ~]$ export PATH=/home/labs/schwartzlab/Collaboration/programs/DPAM/mkdssp:/home/labs/schwartzlab/Collaboration/programs/DPAM/DaliLite.v5/bin/dali.pl:/home/labs/schwartzlab/Collaboration/programs/DPAM/hh-suite/build/bin:/home/labs/schwartzlab/Collaboration/programs/DPAM/hh-suite/build/scripts:$PATH
-(DPAM) [user@access DPAM]$ wget https://alphafold.ebi.ac.uk/files/AF-Q9ZFH0-F1-model_v4.pdb
-(DPAM) [user@access DPAM]$ wget https://alphafold.ebi.ac.uk/files/AF-Q9ZFH0-F1-predicted_aligned_error_v4.png
-(DPAM) [user@access DPAM]$ python /home/labs/schwartzlab/Collaboration/programs/DPAM/DPAM.py AF-Q9ZFH0-F1-model_v4.pdb AF-Q9ZFH0-F1-predicted_aligned_error_v4.png Q9ZFH0 ./ 12 /home/labs/schwartzlab/Collaboration/databases/DPAM/
+And something that worked for me
+```
+conda activate DPAM
+export PATH=/home/labs/schwartzlab/Collaboration/programs/DPAM/mkdssp:/home/labs/schwartzlab/Collaboration/programs/DPAM/DaliLite.v5/bin/dali.pl:/home/labs/schwartzlab/Collaboration/programs/DPAM/hh-suite/build/bin:/home/labs/schwartzlab/Collaboration/programs/DPAM/hh-suite/build/scripts:$PATH
+wget https://alphafold.ebi.ac.uk/files/AF-Q9ZFH0-F1-model_v4.pdb
+wget https://alphafold.ebi.ac.uk/files/AF-Q9ZFH0-F1-predicted_aligned_error_v4.png
+python /home/labs/schwartzlab/Collaboration/programs/DPAM/DPAM.py AF-Q9ZFH0-F1-model_v4.pdb AF-Q9ZFH0-F1-predicted_aligned_error_v4.png Q9ZFH0 ./ 12 /home/labs/schwartzlab/Collaboration/databases/DPAM/
 ```
 
 
