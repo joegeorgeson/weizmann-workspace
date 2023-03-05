@@ -13,7 +13,10 @@ conda install -c bioconda foldseek
 conda install -c conda-forge mmcif_pdbx
 conda install -c bioconda blast
 pip install dssp-wsl
+conda install -c salilab dssp
+conda install -c anaconda libboost=1.67.0
 ln -s /home/labs/schwartzlab/Collaboration/programs/DPAM/DaliLite.v5/bin/dali.pl ~/.conda/envs/DPAM/bin/
+ln -s /home/labs/schwartzlab/Collaboration/programs/DPAM/mkdssp ~/.conda/envs/DPAM/bin/
 ```
 And lastly, the conda doesn't correctly source eveything, so this is the workaround for now.
 ```
