@@ -27,7 +27,7 @@ wget https://alphafold.ebi.ac.uk/files/AF-A0A009GC07-F1-predicted_aligned_error_
 
 
 ## Seach accession IDs
-This file can be loaded into R and accessions matched with Uniprot
+This file can be loaded into R and accessions matched with Uniprot (better to use .rds if using `R`)
 ```
 /home/labs/schwartzlab/joeg/alphafold/diamond/accession_ids.csv # 7.0G
 /home/labs/schwartzlab/joeg/alphafold/diamond/accession_ids.rds # 2.6G
