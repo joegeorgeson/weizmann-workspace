@@ -33,7 +33,7 @@ This file can be loaded into R and accessions matched with Uniprot (better to us
 /home/labs/schwartzlab/joeg/alphafold/diamond/accession_ids.rds # 2.6G
 ```
 
-## You can do a blast search (with dimaond) against the below
+## You can do a blast search (with [diamond](https://github.com/bbuchfink/diamond)) against the below
 ```
 /home/labs/schwartzlab/joeg/alphafold/diamond/alphafold.dmnd
 ```
