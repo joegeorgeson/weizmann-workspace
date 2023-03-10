@@ -15,6 +15,7 @@ conda create --name espresso -c conda-forge bioconda --file conda_requirements.t
 
 ## Usage
 * The below shows an example of the test samples via the command line (not snakemake)
+* All step are to be done inside the conda `conda activate espresso`
 
 ### Step 1: prepare bed and align fastq
 ```
