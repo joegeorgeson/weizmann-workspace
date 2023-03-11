@@ -7,8 +7,8 @@ ESPRESSO (Error Statistics PRomoted Evaluator of Splice Site Options) is a novel
 * This is to run locally (without snakemake)
 * Straightforward to install via conda requirements
 ```
-cd /home/labs/schwartzlab/Collaboration/programs
-git clone https://github.com/Xinglab/espresso.git
+# cd /home/labs/schwartzlab/Collaboration/programs
+# git clone https://github.com/Xinglab/espresso.git
 cd /home/labs/schwartzlab/Collaboration/programs/espresso/snakemake
 conda create --name espresso -c conda-forge bioconda --file conda_requirements.txt
 ```
