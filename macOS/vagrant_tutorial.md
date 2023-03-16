@@ -1,4 +1,5 @@
-# This is guidlines for working with vagrant on macOS for the purpose of creating `docker` and `sif`
+# This is guidlines for working with [vagrant on macOS](https://developer.hashicorp.com/vagrant/docs/other/macos-catalina)
+Main purpose is for the purpose of creating sif from docker containers
 
 ## Usage
 * Enter directory with `Vagrantfile`
