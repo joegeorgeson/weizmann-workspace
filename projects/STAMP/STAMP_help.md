@@ -3,7 +3,19 @@
 ## Analyze data
 * The below shows an example output from the Rscript
 ```
+library(ggseqlogo)
+STAMP.data <- readRDS("/home/labs/schwartzlab/joeg/tmp/sharon/STAMP/joeSTAMP_ex.rds")
+STAMP.data <- STAMP.data[as.numeric(STAMP.data$mismatch) / as.numeric(STAMP.data$depth) > 0.1]
 
+STAMP.data <- STAMP.data[STAMP.data$num.hits > 1]
+
+STAMP.seqs.reps <- rep(STAMP.data$seq, as.numeric(STAMP.data$depth))
+
+c.dna <- unlist(lapply(STAMP.seqs.reps, function(x) strsplit(x, ",")[[1]]))
+c.dna <- c.dna[nchar(c.dna) == names(which(table(nchar(c.dna)) == max(table(nchar(c.dna)))))]
+p1 <- ggseqlogo(c.dna, method = 'bits' )
+p2 <- ggseqlogo(c.dna, method = 'prob' )
+gridExtra::grid.arrange(p1, p2)
 ```
 
 ## Setup
