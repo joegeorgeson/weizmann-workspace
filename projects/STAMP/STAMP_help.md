@@ -36,7 +36,9 @@ bed.path.p <- "/home/labs/schwartzlab/joeg/tmp/sharon/STAMP/RBFOX2_STAMP_high_tr
 bed.path.n <- "/home/labs/schwartzlab/joeg/tmp/sharon/STAMP/RBFOX2_STAMP_high_trimmed_refbase_alignUnmapped_final_filterAligned.sortedByCoord.out.fwd.sorted.rmdup.readfiltered.formatted.varfiltered.snpfiltered.ranked.bed"
 
 bed.data.p <- fread(bed.path.p, header = F)
+bed.data.p$V6 <- "+"
 bed.data.n <- fread(bed.path.n, header = F)
+bed.data.n$V6 <- "-"
 all.bed.data <- rbind(bed.data.p, bed.data.n)
 all.bed.data <- all.bed.data[all.bed.data$V1 %in% c(paste0("chr",1:22),"chrX", "chrY", "chrM")]
 colnames(all.bed.data) <- c("chr", "start", "end", "info", "score", "strand")
@@ -99,12 +101,12 @@ for(i in 1:length(hg19.hit.s)){
       
     }
     all.window.seq <- do.call(c, all.window.seq)
+    
     hg19.hit.s[[i]]$num.hits[index.match] <- length(all.window.seq)
     hg19.hit.s[[i]]$mRNA.pos[index.match] <- paste0(this.gr@start, collapse=",")
     hg19.hit.s[[i]]$seq[index.match] <- paste0(as.character(all.window.seq),collapse = ",")
     hg19.hit.s[[i]]$tx.name[index.match] <- paste0(names(all.window.seq),collapse = ",")
   }
-  
+  saveRDS(hg19.hit.s[[i]], file=paste0("/home/labs/schwartzlab/joeg/tmp/sharon/STAMP/", names(hg19.hit.s)[i], "_joeSTAMP.rds"))
 }
-
 ```
