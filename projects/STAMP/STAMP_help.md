@@ -4,8 +4,17 @@
 * The below shows an example output from the Rscript
 ```
 library(ggseqlogo)
+
+# Consolidate data
+{
+  input.dir <- "/home/labs/schwartzlab/joeg/tmp/sharon/STAMP/"
+  STAMP.files <- list.files(input.dir, pattern="joeSTAMP", full.names = T)
+  STAMP.data <- lapply(STAMP.files, function(x) readRDS(x))
+  STAMP.data <- rbindlist(STAMP.data)
+  saveRDS(STAMP.data, "/home/labs/schwartzlab/joeg/tmp/sharon/STAMP/joeSTAMP_ex.rds")
+}
+
 STAMP.data <- readRDS("/home/labs/schwartzlab/joeg/tmp/sharon/STAMP/joeSTAMP_ex.rds")
-STAMP.data <- STAMP.data[as.numeric(STAMP.data$mismatch) / as.numeric(STAMP.data$depth) > 0.1]
 
 STAMP.data <- STAMP.data[STAMP.data$num.hits > 1]
 
@@ -48,9 +57,9 @@ bed.path.p <- "/home/labs/schwartzlab/joeg/tmp/sharon/STAMP/RBFOX2_STAMP_high_tr
 bed.path.n <- "/home/labs/schwartzlab/joeg/tmp/sharon/STAMP/RBFOX2_STAMP_high_trimmed_refbase_alignUnmapped_final_filterAligned.sortedByCoord.out.fwd.sorted.rmdup.readfiltered.formatted.varfiltered.snpfiltered.ranked.bed"
 
 bed.data.p <- fread(bed.path.p, header = F)
-bed.data.p$V6 <- "+"
+# bed.data.p$V6 <- "+"
 bed.data.n <- fread(bed.path.n, header = F)
-bed.data.n$V6 <- "-"
+# bed.data.n$V6 <- "-"
 all.bed.data <- rbind(bed.data.p, bed.data.n)
 all.bed.data <- all.bed.data[all.bed.data$V1 %in% c(paste0("chr",1:22),"chrX", "chrY", "chrM")]
 colnames(all.bed.data) <- c("chr", "start", "end", "info", "score", "strand")
@@ -62,7 +71,7 @@ all.bed.data$mismatch <- as.numeric(all.bed.data$depth)*as.numeric(lapply(all.be
 ##
 ## filter the data based on some basic criteria
 ##
-all.bed.data <- all.bed.data[all.bed.data$depth > 20 & all.bed.data$mismatch > 4]
+all.bed.data <- all.bed.data[all.bed.data$depth > 10 & all.bed.data$mismatch > 4]
 
 tx.fa.dna <- readDNAStringSet(tx.fa.path)
 names(tx.fa.dna) <- unlist(lapply(names(tx.fa.dna), function(x) strsplit(x, "::")[[1]][1]))
@@ -113,7 +122,7 @@ for(i in 1:length(hg19.hit.s)){
       
     }
     all.window.seq <- do.call(c, all.window.seq)
-    
+    # all.window.seq <- Biostrings::reverseComplement(all.window.seq)
     hg19.hit.s[[i]]$num.hits[index.match] <- length(all.window.seq)
     hg19.hit.s[[i]]$mRNA.pos[index.match] <- paste0(this.gr@start, collapse=",")
     hg19.hit.s[[i]]$seq[index.match] <- paste0(as.character(all.window.seq),collapse = ",")
