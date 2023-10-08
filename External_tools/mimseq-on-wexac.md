@@ -18,6 +18,7 @@ cp usearch ~/.conda/envs/mimseq/bin/ #needed to anyway source from usearch modul
 
 * Make sure to update the `--out-dir` path
 * In Oct-23 it was noted that the current Modomics data this package retrieves is not compatible and users should add the flag `--local-modomics`
+* Also in Oct-23 updated the conda env to `mimseq_yaml` because of issues with their conda/github install
 * Below is a working example at the time of writing this document (output in folder `hg38_HEK239vsK562`)
 
 ```
